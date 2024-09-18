@@ -9,8 +9,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useNavigate } from "react-router-dom";
 
 export default function Cardapios() {
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -51,7 +53,12 @@ export default function Cardapios() {
       <div className={`fixed ${isMobile ? "bottom-5 right-5" : "bottom-10 right-10"} z-50`}>
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger className="bg-[#12101D] p-4 text-white rounded-full shadow-lg hover:bg-[#0e0c18] transition duration-200"><Plus /></TooltipTrigger>
+            <TooltipTrigger
+              onClick={() => navigate('/cardapios/cadastro')}
+              className="bg-[#12101D] p-4 text-white rounded-full shadow-lg hover:bg-[#0e0c18] transition duration-200"
+            >
+              <Plus />
+            </TooltipTrigger>
             <TooltipContent>
               <p>Criar cardápio</p>
             </TooltipContent>
