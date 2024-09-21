@@ -13,12 +13,50 @@ const ImageBanner = ({ inputId, onImageChange }) => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
-      onImageChange(imageUrl);
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const img = new Image();
+
+        img.src = event.target.result;
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          const maxSize = 1000; // Define o tamanho máximo (1MB)
+          let width = img.width;
+          let height = img.height;
+
+          // Ajusta as dimensões mantendo a proporção
+          if (width > height) {
+            if (width > maxSize) {
+              height *= maxSize / width;
+              width = maxSize;
+            }
+          } else {
+            if (height > maxSize) {
+              width *= maxSize / height;
+              height = maxSize;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const base64Image = canvas.toDataURL('image/jpeg', 0.8);
+
+          setImage(base64Image);
+          onImageChange(base64Image);
+        };
+      };
+
+      reader.readAsDataURL(file);
     }
   };
+
 
   const triggerFileInput = () => {
     document.getElementById(inputId).click();
