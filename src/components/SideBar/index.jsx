@@ -27,7 +27,7 @@ export default function SideBar({ onToggle }) {
   return (
     <div
       className={`${open ? "w-72" : "w-20"
-        } bg-[#12101D] h-screen p-5 pt-8 fixed duration-300 rounded-r-lg `}
+        } bg-gray-950 h-screen p-5 pt-8 fixed duration-300 rounded-r-lg `}
     >
       <img
         src="./src/assets/SideBar/control.png"

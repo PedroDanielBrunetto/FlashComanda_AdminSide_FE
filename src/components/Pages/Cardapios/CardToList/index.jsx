@@ -10,7 +10,7 @@ export default function CardToList({
 }) {
   return (
     <div
-      className={`card w-80 h-[26rem] bg-[#07182E] rounded-2xl overflow-hidden relative transition-all duration-300 
+      className={`card w-80 h-[26rem] bg-gray-900 rounded-2xl overflow-hidden relative transition-all duration-300 
       hover:shadow-[0_0_30px_rgba(0,183,255,0.5)] ${itsMobile ? 'w-56' : 'w-80'}`}
     >
       <div className="card-content p-4 relative z-10 h-full flex flex-col justify-between">
